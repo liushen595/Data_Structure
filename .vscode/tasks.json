@@ -1,0 +1,63 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild", //ctrl+shift+B使用这个配置
+            "label": "C/C++: g++.exe 生成活动文件",
+            "command": "D:/Dev/mingw64/bin/g++.exe", //"D:/Dev/mingw64/bin/g++.exe"
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}", //多文件用"${fileDirname}\\*.cpp",单文件用"${file}"
+                "-I",
+                "${workspaceFolder}\\header", //如果出现问题使用"D:\\vscode_c++_singl\\
+                "-I",
+                "${workspaceFolder}\\source",
+                "-o",
+                "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe",
+                "-fexec-charset=GBK", //解决中文乱码
+            ],
+            "options": {
+                "cwd": "D:/Dev/mingw64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。",
+            "presentation": {
+                "echo": true, // 显示命令输出
+                "reveal": "always", // 在运行时总是显示控制台
+                "focus": false, // 不在控制台窗口上获取焦点
+                "panel": "shared", // 共享控制台面板
+                "showReuseMessage": true // 在任务重用时显示消息
+            }
+        },
+        // {
+        //     "type": "shell", //ctrl+F5使用这个(目前已废)
+        //     "label": "g++.exe build active file",
+        //     "command": "D:/mingw64/bin/g++.exe", //"D:/mingw64/bin/g++.exe"
+        //     "args": [
+        //         "-g",
+        //         "${file}", //多文件用"${fileDirname}\\*.cpp",单文件用"${file}"
+        //         "-I",
+        //         "${workspaceFolder}\\header", //如果出现问题使用绝对路径指定头文件路径
+        //         "-I",
+        //         "${workspaceFolder}\\source",
+        //         "-o",
+        //         "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe",
+        //         "-fexec-charset=GBK", //解决中文乱码
+        //     ],
+        //     "options": {
+        //         "cwd": "D:/mingw64/bin"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+        //     "group": "build"
+        // },
+    ]
+}
