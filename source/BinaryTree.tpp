@@ -91,6 +91,60 @@ void AbstractBinaryTree<T>::levelOrderTraversal() const {
     // cout << endl; // 末尾不输出换行
 }
 
+// 前序遍历转vector
+template <typename T>
+void AbstractBinaryTree<T>::preOrderVector(TreeNode* node, vector<T> &res) const {
+    if (node) {
+        res.push_back(node->value);
+        preOrderVector(node->left, res);
+        preOrderVector(node->right, res);
+    }
+}
+
+// 中序遍历转vector
+template <typename T>
+void AbstractBinaryTree<T>::inOrderVector(TreeNode* node, vector<T> &res) const {
+    if (node) {
+        inOrderVector(node->left, res);
+        res.push_back(node->value);
+        inOrderVector(node->right, res);
+    }
+}
+
+// 后序遍历转vector
+template <typename T>
+void AbstractBinaryTree<T>::postOrderVector(TreeNode* node, vector<T> &res) const {
+    if (node) {
+        postOrderVector(node->left, res);
+        postOrderVector(node->right, res);
+        res.push_back(node->value);
+    }
+}
+
+// 层序遍历转vector
+template <typename T>
+vector<T> AbstractBinaryTree<T>::levelOrderTraversalVector() const {
+    vector<T> res;
+    if (!root)
+        return res;
+
+    queue<TreeNode*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        TreeNode* node = q.front();
+        q.pop();
+
+        res.push_back(node->value);
+
+        if (node->left)
+            q.push(node->left);
+        if (node->right)
+            q.push(node->right);
+    }
+    return res;
+}
+
 // 计算树的高度
 template <typename T>
 int AbstractBinaryTree<T>::height(TreeNode* node) const {

@@ -24,9 +24,15 @@ protected:
     virtual void inOrderCreatHelper(const vector<T> &values, size_t &index, TreeNode* &root_node, const T ignore);
     virtual void postOrderCreatHelper(const vector<T> &values, size_t &index, TreeNode* &root_node, const T ignore);
     virtual void deleteTree(TreeNode* node);
+
     virtual void preOrder(TreeNode* node) const;
     virtual void inOrder(TreeNode* node) const;
     virtual void postOrder(TreeNode* node) const;
+
+    virtual void preOrderVector(TreeNode* node, vector<T> &res) const;
+    virtual void inOrderVector(TreeNode* node, vector<T> &res) const;
+    virtual void postOrderVector(TreeNode* node, vector<T> &res) const;
+
     virtual int height(TreeNode* node) const;
 
     virtual TreeNode* deleteNodeHelper(TreeNode* node, const T &value) = 0;
@@ -42,10 +48,17 @@ public:
     virtual void inOrderCreat(const vector<T> &values, const T ignore);
     virtual void postOrderCreat(const vector<T> &values, const T ignore);
     virtual void deleteNode(const T &value) { root = deleteNodeHelper(root, value); }
+
     virtual void preOrderTraversal() const { preOrder(root); }
     virtual void inOrderTraversal() const { inOrder(root); }
     virtual void postOrderTraversal() const { postOrder(root); }
     virtual void levelOrderTraversal() const;
+
+    virtual vector<T> preOrderTraversalVector() const { vector<T> res; preOrderVector(root, res); return res; };
+    virtual vector<T> inOrderTraversalVector() const { vector<T> res; inOrderVector(root, res); return res; };
+    virtual vector<T> postOrderTraversalVector() const { vector<T> res; postOrderVector(root, res); return res; };
+    virtual vector<T> levelOrderTraversalVector() const;
+
     virtual int getHeight() const { return height(root); }
     virtual int countNodes(const int degree) const;
     virtual int getWidth() const;
