@@ -72,7 +72,15 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "bit": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "format": "cpp",
+        "numbers": "cpp",
+        "span": "cpp",
+        "text_encoding": "cpp",
+        "variant": "cpp"
     },
     // "C_Cpp.errorSquiggles": "enabled"
 }
