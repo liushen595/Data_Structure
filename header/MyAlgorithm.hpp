@@ -36,7 +36,10 @@ namespace MyAlgorithm {
 
     namespace Search {
         template <typename T>
-        int BinarySearch(vector<T> &arr, int target);
+        int BinarySearch(vector<T> &arr, T target);
+
+        // template <typename T>
+        // int SequentialSearch(vector<T> &arr, T target);
     }
 
 }

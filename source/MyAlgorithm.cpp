@@ -104,6 +104,26 @@ namespace {
         QkSort(arr, low, left - 1);
         QkSort(arr, left + 1, high);
     }
+
+    // 调整堆
+    template <typename T>
+    void adjustHeap(vector<T> &arr, int i, int n) {
+        T temp = arr[i]; // 先取出当前元素i
+        // 从i结点的左子结点开始，也就是2i+1处开始
+        for (int k = 2 * i + 1; k < n; k = 2 * k + 1) {
+            if (k + 1 < n && arr[k] < arr[k + 1]) { // 如果左子结点小于右子结点，k指向右子结点
+                k++;
+            }
+            if (arr[k] > temp) { // 如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
+                arr[i] = arr[k];
+                i = k; // i指向k，继续循环比较
+            }
+            else {
+                break; // 如果父节点大于子节点，直接跳出
+            }
+        }
+        arr[i] = temp; // 将temp值放到最终的位置
+    }
 }
 
 namespace MyAlgorithm {
@@ -165,7 +185,7 @@ namespace MyAlgorithm {
             int n = arr.size();
             for (int i = 1; i < n; i++) {
                 T temp = arr[i];
-                int j = i - 1;
+                int j = i - 1; // 从i-1开始往前找
                 while (j >= 0 && arr[j] > temp) {
                     arr[j + 1] = arr[j]; // 后移
                     j--; // 从后往前找到比temp小的元素
@@ -206,6 +226,44 @@ namespace MyAlgorithm {
         void MergeSort(vector<T> &arr) {
             vector<T> temp(arr.size());
             MgSort(arr, temp, 0, arr.size() - 1);
+        }
+
+        // 堆排序
+        template <typename T>
+        void HeapSort(vector<T> &arr) {
+            int n = arr.size();
+            for (int i = n / 2 - 1; i >= 0; i--) {
+                // 从最后一个非叶子节点开始调整堆
+                adjustHeap(arr, i, n);
+            }
+            for (int i = n - 1; i > 0; i--) {
+                swap(arr[0], arr[i]); // 将堆顶元素与末尾元素进行交换
+                adjustHeap(arr, 0, i); // 重新调整堆
+            }
+        }
+    }
+
+    /*----------------------------------------------Search----------------------------------------------------------*/
+    namespace Search {
+
+        // 二分查找
+        template <typename T>
+        int BinarySearch(vector<T> &arr, T target) {
+            int left = 0;
+            int right = arr.size() - 1;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (arr[mid] == target) {
+                    return mid;
+                }
+                else if (arr[mid] < target) {
+                    left = mid + 1;
+                }
+                else {
+                    right = mid - 1;
+                }
+            }
+            return -1;
         }
     }
 }
